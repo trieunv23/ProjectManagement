@@ -13,6 +13,7 @@
     -fx-background-color: #d3d3d3 ;
     -fx-background-radius: 3px ;
     -fx-font-size: 14px ;
+    -fx-font-family: Arial ;
 }
 
 .text_field:focused {
@@ -28,12 +29,16 @@
     -fx-background-radius: 3px ;
     -fx-text-fill: white ;
     -fx-font-size: 14px ;
+    -fx-font-family: Arial ;
+    -fx-graphic-text-gap: 10px ;
 }
 
 .button_regester {
     -fx-background-radius: 3px ;
     -fx-background-color: #d3d3d3 ;
     -fx-font-size: 14px ;
+    -fx-font-family: Arial ;
+    -fx-graphic-text-gap: 10px ;
 }
 
 .button_login:hover {
@@ -56,18 +61,21 @@
 .date_picker {
     -fx-background-radius: 3px;
     -fx-font-size: 14px ;
+    -fx-font-family: Arial ;
 }
 
 .date_picker:hover {
     -fx-background-radius: 3px;
     -fx-font-size: 14px ;
     -fx-cursor: hand ;
+    -fx-font-family: Arial ;
 }
 
 .combobox_gender {
     -fx-background-radius: 3px;
     -fx-background-color: #d3d3d3 ;
     -fx-font-size: 14px ;
+    -fx-font-family: Arial ;
 }
 
 .combobox_gender:hover {
@@ -75,6 +83,7 @@
     -fx-background-color: #d3d3d3 ;
     -fx-font-size: 14px ;
     -fx-cursor: hand ;
+    -fx-font-family: Arial ;
 }
 
 .button_eye {
@@ -103,6 +112,7 @@
     -fx-background-color: #d3d3d3;
     -fx-background-radius: 3px;
     -fx-font-size: 14px ;
+    -fx-font-family: Arial ;
 }
 
 .button_tmp {
@@ -121,6 +131,26 @@
 .hobox_eye:focused {
     -fx-background-color: transparent ;
     -fx-background-color:  transparent ;
+}
+
+.btn_close {
+    -fx-background-color: transparent ;
+    -fx-max-width: 30px ;
+    -fx-max-height: 30px ;
+    -fx-min-width: 30px ;
+    -fx-min-height: 30px ;
+    -fx-background-radius: 50em ;
+    -fx-background-insets: 0px ;
+}
+
+.btn_close:hover {
+    -fx-background-color: #dcdcdc ;
+    -fx-max-width: 30px ;
+    -fx-max-height: 30px ;
+    -fx-min-width: 30px ;
+    -fx-min-height: 30px ;
+    -fx-cursor: hand ;
+    -fx-background-insets: 0px ;
 }
 
 

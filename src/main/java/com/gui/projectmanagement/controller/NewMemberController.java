@@ -89,6 +89,7 @@ public class NewMemberController implements Initializable, Data, Network {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/projectmanagement/view/ContactProject.fxml"));
                         AnchorPane anchorpane = loader.load();
+                        anchorpane.getStyleClass().add("contact_item" );
                         ContactProjectController cpc = loader.getController() ;
                         cpc.loadData(contact);
                         cpc.loadStreams(so);

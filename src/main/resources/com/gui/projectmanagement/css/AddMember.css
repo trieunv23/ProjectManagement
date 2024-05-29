@@ -6,7 +6,6 @@
 
 .anchorpane_mid_right {
     -fx-border-color: transparent #808080 #808080 transparent ;
-
     -fx-background-radius: 0 0 7px 0 ;
     -fx-border-radius: 0 0 7px 0 ;
 }
@@ -87,10 +86,32 @@
     -fx-background-radius: 3px ;
     -fx-background-color: #d3d3d3 ;
     -fx-background-insets: 0px ;
+    -fx-graphic-text-gap: 10px;
     -fx-cursor: hand ;
 }
 
 .anchorpane_top {
     -fx-background-color: #6495ed ;
     -fx-background-radius: 7px  7px 0 0 ;
+}
+
+.list_contact {
+    -fx-background-color: transparent ;
+    -fx-border-color: transparent ;
+    -fx-padding: 5px;
+}
+
+.list_contact .list-cell{
+    -fx-background-color: transparent ;
+    -fx-background-radius: 3px ;
+    -fx-border-color: transparent ;
+}
+
+.list_contact .list-cell:selected .contact_item .text {
+    -fx-fill: black ;
+}
+
+.list_contact .list-cell:selected {
+    -fx-background-color: white ;
+    -fx-background-radius: 3px ;
 }

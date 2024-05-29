@@ -17,7 +17,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="anchorpane_right" stylesheets="@../css/Login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.projectmanagement.controller.LoginController">
-   
    <children>
       <Rectangle fx:id="background" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="500.0" layoutX="240.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="660.0" />
       <AnchorPane fx:id="anchorpane_login" prefHeight="500.0" prefWidth="250.0" styleClass="anhchorpane_left" stylesheets="@../css/Login.css">
@@ -32,7 +31,8 @@
                   <TextField fx:id="username_login" prefHeight="35.0" prefWidth="200.0" promptText="Username" styleClass="text_field" stylesheets="@../css/Login.css">
                      <font>
                         <Font size="14.0" />
-                     </font></TextField>
+                     </font>
+                  </TextField>
                   <HBox fx:id="hbox_password_login" prefHeight="35.0" prefWidth="200.0" styleClass="hbox_password" stylesheets="@../css/Login.css">
                      <children>
                         <PasswordField fx:id="password_login" prefHeight="31.0" prefWidth="170.0" promptText="Password" styleClass="text_field_password" stylesheets="@../css/Login.css">
@@ -63,24 +63,28 @@
             </VBox>
             <VBox layoutX="25.0" layoutY="257.0" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="200.0" styleClass="button_login" stylesheets="@../css/Login.css" text="LOG IN">
+                  <Button mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="200.0" styleClass="button_login" stylesheets="@../css/Login.css" text="Log In">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" onAction="#regester" prefHeight="35.0" prefWidth="200.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="REGESTER">
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#regester" prefHeight="35.0" prefWidth="200.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="Regester">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                </children>
             </VBox>
             <Hyperlink layoutX="122.0" layoutY="205.0" onAction="#forgotPassword" prefHeight="23.0" prefWidth="109.0" text="Forgot password?">
                <font>
                   <Font name="Arial" size="12.0" />
-               </font></Hyperlink>
+               </font>
+            </Hyperlink>
             <TextField fx:id="password_show_login" layoutX="26.0" layoutY="167.0" prefHeight="31.0" prefWidth="170.0" promptText="Password" styleClass="text_field_password" stylesheets="@../css/Login.css" visible="false">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorpane_regester1" prefHeight="500.0" prefWidth="250.0" styleClass="anhchorpane_left" stylesheets="@../css/Login.css" visible="false">
@@ -95,11 +99,13 @@
                   <TextField fx:id="first_name" prefHeight="35.0" prefWidth="200.0" promptText="First Name" styleClass="text_field" stylesheets="@../css/Login.css">
                      <font>
                         <Font size="14.0" />
-                     </font></TextField>
+                     </font>
+                  </TextField>
                   <TextField fx:id="last_name" prefHeight="35.0" prefWidth="200.0" promptText="Last Name" styleClass="text_field" stylesheets="@../css/Login.css">
                      <font>
                         <Font size="14.0" />
-                     </font></TextField>
+                     </font>
+                  </TextField>
                   <DatePicker fx:id="day_of_birth" prefHeight="35.0" prefWidth="200.0" promptText="Day of Birth" styleClass="date_picker" stylesheets="@../css/Login.css" />
                   <ComboBox fx:id="gender" prefHeight="35.0" prefWidth="200.0" promptText="Gender" styleClass="combobox_gender" stylesheets="@../css/Login.css" />
                </children>
@@ -107,18 +113,21 @@
             <Label layoutX="25.0" layoutY="330.0" prefHeight="17.0" prefWidth="115.0" text="Personal information" />
             <HBox layoutX="25.0" layoutY="436.0" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#backToLogin" prefHeight="35.0" prefWidth="95.0" styleClass="button_login" stylesheets="@../css/Login.css" text="LOGIN">
+                  <Button mnemonicParsing="false" onAction="#backToLogin" prefHeight="35.0" prefWidth="95.0" style="-fx-graphic-text-gap: 10px;" styleClass="button_login" stylesheets="@../css/Login.css" text="Login">
                      <graphic>
-                        <ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
                            <image>
                               <Image url="@../images/Back.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#goToRegester2" prefHeight="35.0" prefWidth="95.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="NEXT">
+                  <Button mnemonicParsing="false" onAction="#goToRegester2" prefHeight="35.0" prefWidth="95.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="Next">
                      <graphic>
-                        <ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
                            <image>
                               <Image url="@../images/Next.png" />
                            </image>
@@ -145,7 +154,7 @@
             <Label layoutX="25.0" layoutY="330.0" prefHeight="17.0" prefWidth="115.0" text="Contact information" />
             <HBox layoutX="25.0" layoutY="436.0" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#backToRegester1" prefHeight="35.0" prefWidth="95.0" styleClass="button_login" stylesheets="@../css/Login.css" text="BACK">
+                  <Button mnemonicParsing="false" onAction="#backToRegester1" prefHeight="35.0" prefWidth="95.0" styleClass="button_login" stylesheets="@../css/Login.css" text="Back">
                      <graphic>
                         <ImageView>
                            <image>
@@ -154,7 +163,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#goToRegester3" prefHeight="35.0" prefWidth="95.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="NEXT">
+                  <Button mnemonicParsing="false" onAction="#goToRegester3" prefHeight="35.0" prefWidth="95.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="Next">
                      <graphic>
                         <ImageView>
                            <image>
@@ -236,7 +245,7 @@
             <Label layoutX="25.0" layoutY="330.0" prefHeight="17.0" prefWidth="115.0" text="Security information" />
             <HBox layoutX="25.0" layoutY="436.0" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#backToRegester2" prefHeight="35.0" prefWidth="95.0" styleClass="button_login" stylesheets="@../css/Login.css" text="BACK">
+                  <Button mnemonicParsing="false" onAction="#backToRegester2" prefHeight="35.0" prefWidth="95.0" styleClass="button_login" stylesheets="@../css/Login.css" text="Back">
                      <graphic>
                         <ImageView>
                            <image>
@@ -245,7 +254,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#goToAuthentication" prefHeight="35.0" prefWidth="95.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="NEXT">
+                  <Button mnemonicParsing="false" onAction="#goToAuthentication" prefHeight="35.0" prefWidth="95.0" styleClass="button_regester" stylesheets="@../css/Login.css" text="Next">
                      <graphic>
                         <ImageView>
                            <image>
@@ -351,5 +360,14 @@
             </Button>
          </children>
       </AnchorPane>
+      <Button layoutX="860.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="30.0" styleClass="btn_close" stylesheets="@../css/Login.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/Project/Close.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

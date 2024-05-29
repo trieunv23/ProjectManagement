@@ -49,7 +49,7 @@ public class HostController implements Initializable {
             Parent root = loader.load();
             LoginController lc = loader.getController();
             lc.loadHost(host, port);
-            Scene scene = new Scene(root,900,500);
+            Scene scene = new Scene(root,902,502);
             scene.setFill(Color.TRANSPARENT);
             Stage primaryStage = new Stage() ;
 

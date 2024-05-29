@@ -21,11 +21,11 @@
          <children>
             <AnchorPane prefHeight="40.0" prefWidth="1000.0" style="-fx-background-color: black; -fx-background-radius: 7px 7px 0 0;" styleClass="anchorpane_top" stylesheets="@../css/ProjectView.css">
                <children>
-                  <AnchorPane layoutX="720.0" layoutY="9.0" prefHeight="23.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 3px;">
+                  <AnchorPane layoutX="725.0" layoutY="11.0" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 3px;">
                      <children>
-                        <Label fx:id="status" layoutX="35.0" layoutY="4.0" prefHeight="23.0" prefWidth="150.0" style="-fx-alignment: center;" text="In Progress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="status" layoutX="35.0" layoutY="4.0" prefHeight="20.0" prefWidth="150.0" style="-fx-alignment: center;" text="In Progress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
-                              <Font name="Arial" size="15.0" />
+                              <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
                      </children>
@@ -50,7 +50,7 @@
                            <children>
                               <VBox prefHeight="23.0" prefWidth="20.0" style="-fx-alignment: center;">
                                  <children>
-                                    <ImageView fitHeight="17.0" fitWidth="17.0">
+                                    <ImageView fitHeight="15.0" fitWidth="15.0">
                                        <image>
                                           <Image url="@../images/Project/Branch.png" />
                                        </image>
@@ -59,7 +59,7 @@
                               </VBox>
                               <Label fx:id="role" prefHeight="23.0" prefWidth="150.0" text="Manager" textFill="WHITE">
                                  <font>
-                                    <Font name="Arial" size="15.0" />
+                                    <Font name="Arial" size="13.0" />
                                  </font>
                               </Label>
                            </children>
@@ -88,38 +88,26 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox layoutX="570.0" layoutY="5.0" prefHeight="30.0" prefWidth="130.0" spacing="20.0">
+                  <HBox layoutX="605.0" layoutY="8.0" prefHeight="25.0" prefWidth="100.0" spacing="20.0">
                      <children>
-                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#resetProject" style="-fx-background-color: transparent;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <graphic>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@../images/Project/ResetWhite.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                        <Button maxHeight="25.0" maxWidth="30.0" minHeight="25.0" minWidth="30.0" mnemonicParsing="false" onAction="#resetProject" style="-fx-background-color: transparent;">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0">
                                  <image>
-                                    <Image url="@../images/Project/Search2.png" />
+                                    <Image url="@../images/Project/ResetWhite.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#showMembers" style="-fx-background-color: transparent;">
+                        <Button maxHeight="25.0" maxWidth="30.0" minHeight="25.0" minWidth="30.0" mnemonicParsing="false" onAction="#showMembers" style="-fx-background-color: transparent;">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <graphic>
-                              <ImageView fitHeight="23.0" fitWidth="23.0">
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
                                  <image>
                                     <Image url="@../images/Project/Members2.png" />
                                  </image>
@@ -289,7 +277,7 @@
                                           </Label>
                                           <VBox prefHeight="50.0" prefWidth="296.0">
                                              <children>
-                                                <Button fx:id="button_file" mnemonicParsing="false" onAction="#uploadFile" prefHeight="50.0" prefWidth="301.0" style="-fx-alignment: center_left; -fx-padding: 0 0 0 15px; -fx-border-color: gray; -fx-background-radius: 3px; -fx-border-radius: 3px; -fx-graphic-text-gap: 10px;" text="Upload File (50MB)">
+                                                <Button fx:id="button_file" mnemonicParsing="false" onAction="#uploadFile" prefHeight="50.0" prefWidth="301.0" styleClass="button_file" stylesheets="@../css/ProjectView.css" text="Upload File (50MB)">
                                                    <graphic>
                                                       <ImageView>
                                                          <image>
@@ -372,7 +360,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="410.0" layoutY="110.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-border-color: #808080; -fx-border-radius: 10px;" visible="false">
+      <AnchorPane layoutX="410.0" layoutY="110.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
          <children>
             <Label layoutX="43.0" layoutY="160.0" prefHeight="21.0" prefWidth="219.0" style="-fx-alignment: center;" text="Võ Quốc Khang">
                <font>
@@ -415,7 +403,7 @@
             <Rectangle arcHeight="15.0" arcWidth="15.0" fill="LIGHTGRAY" height="80.0" layoutX="113.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="a_members" layoutX="200.0" layoutY="110.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 3px;" visible="false">
+      <AnchorPane fx:id="a_members" layoutX="200.0" layoutY="110.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
          <children>
             <Label layoutX="20.0" layoutY="18.0" text="Members">
                <font>
@@ -442,7 +430,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="a_file_detail" layoutX="406.0" layoutY="200.0" prefHeight="200.0" prefWidth="308.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 3px; -fx-border-color: gray; -fx-border-radius: 3px;" visible="false">
+      <AnchorPane fx:id="a_file_detail" layoutX="406.0" layoutY="200.0" prefHeight="200.0" prefWidth="308.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);;" visible="false">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="20.0">
                <image>
@@ -548,7 +536,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="a_feedback" layoutX="325.0" layoutY="75.0" prefHeight="450.0" prefWidth="350.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 7px; -fx-background-radius: 7px;" visible="false">
+      <AnchorPane fx:id="a_feedback" layoutX="325.0" layoutY="75.0" prefHeight="450.0" prefWidth="350.0" style="-fx-background-color: #f5f5f5; -fx-border-radius: 7px; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="FeedBack">
                <font>

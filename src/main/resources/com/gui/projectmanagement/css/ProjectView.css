@@ -147,13 +147,13 @@
 
 .button_feedback_center_bottom {
     -fx-background-insets: 0px;
-    -fx-background-color: #ffff00 ;
+    -fx-background-color: #dcdcdc;
     -fx-background-radius: 3px;
 }
 
 .button_feedback_center_bottom:hover {
     -fx-background-insets: 0px;
-    -fx-background-color: #ffd700 ;
+    -fx-background-color: #a9a9a9 ;
     -fx-background-radius: 3px;
     -fx-cursor: hand ;
 }
@@ -258,6 +258,25 @@
 .list_member .list-cell:selected {
     -fx-background-color:  #f8f8ff ;
     -fx-background-radius: 3px ;
+}
+
+.button_file {
+    -fx-alignment:  center_left ;
+    -fx-padding:  0 0 0 15px ;
+    -fx-background-radius: 3px ;
+    -fx-graphic-text-gap: 10px ;
+    -fx-background-color:  #d3d3d3 ;
+    -fx-border-color: transparent;
+}
+
+.button_file:hover {
+    -fx-alignment:  center_left ;
+    -fx-padding:  0 0 0 15px ;
+    -fx-background-radius: 3px ;
+    -fx-graphic-text-gap: 10px ;
+    -fx-background-color:  #a9a9a9 ;
+    -fx-border-color: transparent;
+    -fx-cursor: hand ;
 }
 
 

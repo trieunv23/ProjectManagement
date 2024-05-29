@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -352,12 +353,12 @@ public class ProjectViewController implements Initializable, Network, Access, Da
                             this.size.setText(Double.parseDouble(df.format(mb_size_file)) + " MB");
                         }
                     }
+                    this.size.setStyle(null);
                 } else {
                     this.size.setText(Double.parseDouble(df.format(mb_size_file)) + " MB");
-                    this.size.setStyle("-fx-background-color: red ;");
+                    this.size.setStyle("-fx-text-fill: red ;");
                 }
-            } else {
-                this.size.setStyle(null);
+                extension.setText(getFileExtension(file_name));
             }
             this.dowload.setDisable(true);
         } else if (pt != null) {
@@ -365,13 +366,27 @@ public class ProjectViewController implements Initializable, Network, Access, Da
             this.a_file_detail.setVisible(true);
             file_name.setText(pt.getFile_name());
             setFileSize(size, pt.getFile_size());
+            extension.setText(getFileExtension(pt.getFile_name()));
             this.dowload.setDisable(true);
+
+            if (pt.getFile_size() > 52428800) {
+                this.size.setStyle("-fx-text-fill: red ;");
+            } else {
+                this.size.setStyle(null);
+            }
         } else if (this.pp != null) {
             this.a_main.setDisable(true);
             this.a_file_detail.setVisible(true);
             file_name.setText(pp.getFile_name());
             setFileSize(size, pp.getFile_size());
+            extension.setText(getFileExtension(pp.getFile_name()));
             this.dowload.setDisable(false);
+
+            if (pp.getFile_size() > 52428800) {
+                this.size.setStyle("-fx-text-fill: red ;");
+            } else {
+                this.size.setStyle(null);
+            }
         }
     }
 
@@ -387,6 +402,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
             int size = (int) byte_size_file;
             pt2 = new ProductTemp(client_data.getId(), file_tmp, file_name, size) ;
             this.file_name.setText(file_name);
+            extension.setText(getFileExtension(file_name));
             double kb_size_file = (double) byte_size_file / 1024 ;
             double mb_size_file = (double) kb_size_file / 1024 ;
             DecimalFormat df = new DecimalFormat("#.##");
@@ -403,7 +419,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
                 this.size.setStyle(null);
             } else {
                 this.size.setText(Double.parseDouble(df.format(mb_size_file)) + " MB");
-                this.size.setStyle("-fx-background-color: red ;");
+                this.size.setStyle("-fx-text-fill: red ;");
             }
             this.dowload.setDisable(true);
         } else {
@@ -414,14 +430,23 @@ public class ProjectViewController implements Initializable, Network, Access, Da
     @FXML
     public void apply(ActionEvent event) {
         if (pt2 != null) {
-            pt = new ProductTemp(pt2.getUploader(), pt2.getFile_data(), pt2.getFile_name(), pt2.getFile_size()) ;
-            pt2 = null ;
-            this.button_file.setText(pt.getFile_name());
-            btn_discard.setDisable(false);
+            if (pt2.getFile_size() < 52428800) {
+                pt = new ProductTemp(pt2.getUploader(), pt2.getFile_data(), pt2.getFile_name(), pt2.getFile_size()) ;
+                pt2 = null ;
+                this.button_file.setText(pt.getFile_name());
+                btn_discard.setDisable(false);
+
+                this.a_file_detail.setVisible(false);
+                this.a_main.setDisable(false);
+            } else {
+                error("Documents larger than 50Mb in size!");
+            }
+        } else {
+            this.a_file_detail.setVisible(false);
+            this.a_main.setDisable(false);
         }
 
-        this.a_file_detail.setVisible(false);
-        this.a_main.setDisable(false);
+
     }
 
     @FXML
@@ -752,6 +777,42 @@ public class ProjectViewController implements Initializable, Network, Access, Da
         } else {
             return "";
         }
+    }
+
+    public void error(String message) {
+        Platform.runLater(() -> {
+            URL url = ProjectViewController.class.getResource("/com/gui/projectmanagement/view/AlertError.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            try {
+                Parent root = loader.load();
+
+                AlertErrorController aec = loader.getController() ;
+                aec.load(message);
+
+                Scene scene = new Scene(root, 350, 190);
+                scene.setFill(Color.TRANSPARENT);
+                Stage primaryStage = new Stage();
+                primaryStage.setScene(scene);
+                primaryStage.setResizable(false);
+                primaryStage.initStyle(StageStyle.TRANSPARENT);
+
+                root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                    xOffset = mouseEvent.getSceneX();
+                    yOffset = mouseEvent.getSceneY();
+                });
+
+                root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                    primaryStage.setX(mouseEvent.getScreenX() - xOffset);
+                    primaryStage.setY(mouseEvent.getScreenY() - yOffset);
+                });
+
+                primaryStage.initModality(Modality.APPLICATION_MODAL);
+
+                primaryStage.showAndWait();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 }

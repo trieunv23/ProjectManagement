@@ -236,8 +236,6 @@
 .button_on_result_search {
     -fx-background-color: white ;
     -fx-background-radius: 5px ;
-    -fx-border-radius: 5px;
-    -fx-border-color: #808080 ;
 }
 
 .button_on_result_search:hover {
@@ -449,6 +447,25 @@
 
 .list_feedback .list-cell:selected {
     -fx-background-color:  #f8f8ff ;
+    -fx-background-radius: 3px ;
+}
+
+.list_contact {
+    -fx-background-color: transparent ;
+    -fx-border-color: transparent ;
+}
+
+.list_contact .list-cell{
+    -fx-background-color: transparent ;
+    -fx-border-color: transparent ;
+}
+
+.list_contact .list-cell:selected .contact_item .text {
+    -fx-fill: black ;
+}
+
+.list_contact .list-cell:selected {
+    -fx-background-color: white ;
     -fx-background-radius: 3px ;
 }
 

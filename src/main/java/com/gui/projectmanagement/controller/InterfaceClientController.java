@@ -652,7 +652,8 @@ public class InterfaceClientController implements Initializable, Network, Data, 
 
         basic_information.setOnAction(event -> {
             basic_information.setStyle("-fx-background-color:  #dcdcdc;" +
-                                        "-fx-background-radius: 3px;");
+                                        "-fx-background-radius: 3px;" +
+                                        "-fx-padding:  0 0 0 20px;");
             contact_information.setStyle(null);
             login_information.setStyle(null);
             a_contact_information.setVisible(false);
@@ -662,7 +663,8 @@ public class InterfaceClientController implements Initializable, Network, Data, 
 
         contact_information.setOnAction(event -> {
             contact_information.setStyle("-fx-background-color:  #dcdcdc;" +
-                    "-fx-background-radius: 3px;");
+                    "-fx-background-radius: 3px;" +
+                    "-fx-padding:  0 0 0 20px;");
             basic_information.setStyle(null);
             login_information.setStyle(null);
             a_basic_information.setVisible(false);
@@ -672,7 +674,8 @@ public class InterfaceClientController implements Initializable, Network, Data, 
 
         login_information.setOnAction(event -> {
             login_information.setStyle("-fx-background-color:  #dcdcdc;" +
-                    "-fx-background-radius: 3px;");
+                    "-fx-background-radius: 3px;" +
+                    "-fx-padding:  0 0 0 20px;");
             basic_information.setStyle(null);
             contact_information.setStyle(null);
             a_basic_information.setVisible(false);
@@ -1347,6 +1350,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/projectmanagement/view/ContactItem.fxml"));
                             AnchorPane anchorpane = loader.load();
+                            anchorpane.getStyleClass().add("contact_item");
                             ContactItemController cic = loader.getController() ;
                             cic.loadContact(contact);
                             cic.loadICC(InterfaceClientController.this);

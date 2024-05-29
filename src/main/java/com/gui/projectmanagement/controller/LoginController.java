@@ -797,6 +797,7 @@ public class LoginController implements Initializable {
                     new_window.setY(mouseEvent.getScreenY() - yOffset);
                 });
 
+
                 Scene scene = new Scene(root, 1100, 600) ;
                 scene.setFill(Color.TRANSPARENT);
                 new_window.setScene(scene);
