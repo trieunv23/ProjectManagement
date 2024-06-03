@@ -1,7 +1,8 @@
 package com.gui.projectmanagement.controller;
 
 import com.gui.projectmanagement.entity.*;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.ProjectStream;
+import com.gui.projectmanagement.network.ClientStream;
 import com.gui.projectmanagement.network.StreamObject;
 import com.gui.projectmanagement.network.Processing;
 import com.gui.projectmanagement.ui.ProjectViewUI;
@@ -151,7 +152,9 @@ public class ProjectViewController implements Initializable, Network, Access, Da
 
     TaskObject task_interact = null ;
 
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
+
+    ProjectStream ps = new ProjectStream() ;
 
     ProjectViewUI pui = new ProjectViewUI() ;
 
@@ -213,7 +216,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
                             task_selected = selectedItem ;
                             if (selectedItem != null) {
                                 String task_id = selectedItem.getValue().getTask_id();
-                                sf.sendRqTask(so, task_id);
+                                ps.sendRqTask(so, task_id);
                             }
                         }
                     });
@@ -222,7 +225,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
                     task_selected = selectedItem ;
                     if (selectedItem != null) {
                         String task_id = selectedItem.getValue().getTask_id();
-                        sf.sendRqTask(so, task_id);
+                        ps.sendRqTask(so, task_id);
                     }
                 }
             }
@@ -257,7 +260,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
 
         dowload.setOnAction(event -> {
             if (pp != null) {
-                sf.sendRqProductObject(so, pp.getProduct_id());
+                ps.sendRqProductObject(so, pp.getProduct_id());
             }
             this.a_file_detail.setVisible(false);
             a_main.setDisable(false);
@@ -460,7 +463,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
                 bis.read(file_byte, 0, file_byte.length);
                 bis.close();
                 CreateProductObject cpo = new CreateProductObject("", file_byte, pt.getFile_name(), pt.getFile_size(), pt.getUploader(), task_interact.getTask_id()) ;
-                sf.createProduct(so, cpo) ;
+                ps.createProduct(so, cpo) ;
                 this.pt = null ;
                 btn_discard.setDisable(true);
             } catch (IOException e) {
@@ -559,7 +562,7 @@ public class ProjectViewController implements Initializable, Network, Access, Da
             String product_id = pp.getProduct_id() ;
             String feedback = feedback_fb.getText() ;
             CreateFeedBack cfb = new CreateFeedBack(feedback_sender, project_id, task_id, product_id, feedback) ;
-            sf.sendFeedBack(so, cfb);
+            ps.sendFeedBack(so, cfb);
             this.a_feedback.setVisible(false);
             this.a_main.setDisable(false);
         }

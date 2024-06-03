@@ -5,11 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.gui.projectmanagement.entity.RegesterObject;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.GuestStream;
 import com.gui.projectmanagement.network.StreamObject;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -141,7 +139,7 @@ public class ConfirmCodeController implements Initializable {
 
     @FXML
     public void confirm(ActionEvent event) {
-        StreamFunction sf = new StreamFunction();
+        GuestStream gs = new GuestStream() ;
 
         String number1 = this.number1.getText() ;
         String number2 = this.number2.getText() ;
@@ -151,7 +149,7 @@ public class ConfirmCodeController implements Initializable {
             throw new RuntimeException("Not enough characters.") ;
         }
         String code = number1.concat(number2).concat(number3).concat(number4) ;
-        String result = sf.regester_last(so, code) ;
+        String result = gs.regester_last(so, code) ;
         if (result.equals("@rgst_success")) {
             alert("Registered successfully !");
             Stage present_window = (Stage) ((Node) event.getSource()).getScene().getWindow();

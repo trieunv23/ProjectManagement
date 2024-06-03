@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-radius: 7px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.projectmanagement.controller.ProjectViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" style="-fx-background-radius: 7px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.projectmanagement.controller.ProjectViewController">
    <children>
       <AnchorPane fx:id="a_main" prefHeight="550.0" prefWidth="1000.0" style="-fx-background-radius: 7px;">
          <children>
@@ -118,7 +118,7 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="40.0" prefHeight="560.0" prefWidth="250.0" styleClass="anchorpane_left" stylesheets="@../css/ProjectView.css">
+            <AnchorPane layoutY="40.0" prefHeight="540.0" prefWidth="250.0" styleClass="anchorpane_left" stylesheets="@../css/ProjectView.css">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Project Structure">
                      <font>
@@ -126,38 +126,24 @@
                      </font>
                   </Label>
                   <TreeView fx:id="task_tree" layoutX="10.0" layoutY="45.0" prefHeight="455.0" prefWidth="230.0" style="-fx-background-color: transparent;" />
-                  <HBox layoutX="86.0" layoutY="519.0" prefHeight="27.0" prefWidth="150.0" spacing="10.0">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" styleClass="button_pause_bottom" stylesheets="@../css/ProjectView.css" text="Pause">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" styleClass="button_finish_bottom" stylesheets="@../css/ProjectView.css" text="Finish">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="250.0" layoutY="40.0" prefHeight="35.0" prefWidth="750.0" styleClass="anchorpane_center_top" stylesheets="@../css/ProjectView.css" />
-            <AnchorPane layoutX="250.0" layoutY="75.0" minWidth="750.0" prefHeight="525.0" prefWidth="550.0" style="-fx-border-color: transparent  gray #808080 transparent; -fx-border-radius: 0 0 7px 0;">
+            <AnchorPane layoutX="250.0" layoutY="75.0" minWidth="750.0" prefHeight="505.0" prefWidth="750.0" style="-fx-border-color: transparent  gray #808080 transparent; -fx-border-radius: 0 0 7px 0;">
                <children>
-                  <AnchorPane minWidth="750.0" prefHeight="45.0" prefWidth="750.0" style="-fx-border-color: transparent transparent #808080 transparent;">
+                  <AnchorPane minWidth="750.0" prefHeight="35.0" prefWidth="750.0" style="-fx-border-color: transparent transparent #808080 transparent;">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Task: ">
+                        <Label layoutX="14.0" layoutY="9.0" text="Task: ">
                            <font>
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="task_name" layoutX="55.0" layoutY="14.0">
+                        <Label fx:id="task_name" layoutX="55.0" layoutY="9.0">
                            <font>
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Label>
-                        <Button layoutX="696.0" layoutY="8.0" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onAction="#resetTask" prefHeight="30.0" prefWidth="40.0" styleClass="button_reset" stylesheets="@../css/InterfaceClient.css">
+                        <Button layoutX="696.0" layoutY="3.0" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onAction="#resetTask" prefHeight="30.0" prefWidth="40.0" styleClass="button_reset" stylesheets="@../css/InterfaceClient.css">
                            <graphic>
                               <ImageView>
                                  <image>
@@ -168,9 +154,9 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <HBox layoutX="40.0" layoutY="63.0" prefHeight="400.0" prefWidth="670.0" spacing="30.0">
+                  <HBox layoutX="40.0" layoutY="50.0" prefHeight="395.0" prefWidth="670.0" spacing="30.0">
                      <children>
-                        <AnchorPane prefHeight="365.0" prefWidth="320.0" style="-fx-border-color: #808080; -fx-border-radius: 3px;">
+                        <AnchorPane prefHeight="365.0" prefWidth="320.0" style="-fx-border-color: #808080; -fx-border-radius: 7px;">
                            <children>
                               <VBox layoutX="25.0" layoutY="14.0" prefHeight="378.0" prefWidth="270.0" spacing="15.0">
                                  <children>
@@ -264,9 +250,9 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="350.0" prefWidth="320.0" style="-fx-border-color: #808080; -fx-border-radius: 3px;">
+                        <AnchorPane prefHeight="350.0" prefWidth="320.0" style="-fx-border-color: #808080; -fx-border-radius: 7px;">
                            <children>
-                              <VBox layoutX="25.0" layoutY="14.0" prefHeight="300.0" prefWidth="270.0" spacing="15.0">
+                              <VBox layoutX="25.0" layoutY="14.0" prefHeight="250.0" prefWidth="270.0" spacing="15.0">
                                  <children>
                                     <VBox prefHeight="71.0" prefWidth="270.0" spacing="5.0">
                                        <children>
@@ -323,33 +309,33 @@
                                     </VBox>
                                  </children>
                               </VBox>
-                              <Button fx:id="btn_discard" disable="true" layoutX="236.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" style="-fx-font-family: Arial; -fx-background-color: #d3d3d3;" text="Discard">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
                            </children>
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <HBox layoutX="565.0" layoutY="484.0" prefHeight="27.0" prefWidth="160.0" spacing="10.0">
+                  <HBox layoutX="480.0" layoutY="460.0" prefHeight="27.0" prefWidth="230.0" spacing="10.0">
                      <children>
-                        <Button fx:id="feedback" mnemonicParsing="false" onAction="#feedback" prefHeight="27.0" prefWidth="75.0" styleClass="button_feedback_center_bottom" stylesheets="@../css/ProjectView.css" text="Feedback">
+                        <Button mnemonicParsing="false" onAction="#complete" prefHeight="27.0" prefWidth="70.0" styleClass="button_complete_center_bottom" stylesheets="@../css/ProjectView.css" text="Upload" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#complete" prefHeight="27.0" prefWidth="75.0" styleClass="button_complete_center_bottom" stylesheets="@../css/ProjectView.css" text="Complete">
+                        <Button fx:id="feedback" mnemonicParsing="false" onAction="#feedback" prefHeight="27.0" prefWidth="70.0" styleClass="button_feedback_center_bottom" stylesheets="@../css/ProjectView.css" text="Feedback">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btn_discard" disable="true" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" style="-fx-font-family: Arial; -fx-background-color: #d3d3d3;" text="Discard">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                   </HBox>
-                  <AnchorPane fx:id="a_dowload_product" layoutX="40.0" layoutY="480.0" prefHeight="35.0" prefWidth="475.0" stylesheets="@../css/ProjectView.css" visible="false">
+                  <AnchorPane fx:id="a_dowload_product" layoutX="40.0" layoutY="456.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0" stylesheets="@../css/ProjectView.css" visible="false">
                      <children>
-                        <ProgressBar fx:id="progressbar_dowload" layoutY="9.0" prefWidth="200.0" progress="0.0" />
-                        <Label fx:id="prb_lb" layoutX="220.0" layoutY="9.0" maxWidth="220.0" prefHeight="17.0" prefWidth="220.0">
+                        <ProgressBar fx:id="progressbar_dowload" layoutY="9.0" prefHeight="18.0" prefWidth="149.0" progress="0.0" />
+                        <Label fx:id="prb_lb" layoutX="172.0" layoutY="9.0" maxWidth="220.0" prefHeight="17.0" prefWidth="100.0">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
@@ -360,7 +346,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="410.0" layoutY="110.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
+      <AnchorPane layoutX="410.0" layoutY="100.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
          <children>
             <Label layoutX="43.0" layoutY="160.0" prefHeight="21.0" prefWidth="219.0" style="-fx-alignment: center;" text="Võ Quốc Khang">
                <font>
@@ -383,17 +369,7 @@
             </Button>
             <VBox layoutX="78.0" layoutY="240.0" prefHeight="130.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="button_on_result_search" stylesheets="@../css/InterfaceClient.css" text="Add Members">
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="button_on_result_search" stylesheets="@../css/InterfaceClient.css" text="Add Friend">
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="button_on_result_search" stylesheets="@../css/InterfaceClient.css" text="Message">
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #dcdcdc;" styleClass="button_on_result_search" stylesheets="@../css/InterfaceClient.css" text="Add Members">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
@@ -403,7 +379,7 @@
             <Rectangle arcHeight="15.0" arcWidth="15.0" fill="LIGHTGRAY" height="80.0" layoutX="113.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="80.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="a_members" layoutX="200.0" layoutY="110.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
+      <AnchorPane fx:id="a_members" layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
          <children>
             <Label layoutX="20.0" layoutY="18.0" text="Members">
                <font>
@@ -430,7 +406,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="a_file_detail" layoutX="406.0" layoutY="200.0" prefHeight="200.0" prefWidth="308.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);;" visible="false">
+      <AnchorPane fx:id="a_file_detail" layoutX="406.0" layoutY="190.0" prefHeight="200.0" prefWidth="308.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 7px; -fx-border-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);;" visible="false">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="20.0">
                <image>
@@ -536,7 +512,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="a_feedback" layoutX="325.0" layoutY="75.0" prefHeight="450.0" prefWidth="350.0" style="-fx-background-color: #f5f5f5; -fx-border-radius: 7px; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
+      <AnchorPane fx:id="a_feedback" layoutX="325.0" layoutY="65.0" prefHeight="450.0" prefWidth="350.0" style="-fx-background-color: #f5f5f5; -fx-border-radius: 7px; -fx-background-radius: 7px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 0);" visible="false">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="FeedBack">
                <font>

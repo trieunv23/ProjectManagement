@@ -1,10 +1,9 @@
 package com.gui.projectmanagement.controller;
 
-import com.gui.projectmanagement.entity.ClientData;
 import com.gui.projectmanagement.entity.ContactObject;
 import com.gui.projectmanagement.entity.RequestAddContact;
 import com.gui.projectmanagement.network.Processing;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.ClientStream;
 import com.gui.projectmanagement.network.StreamObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,7 +40,7 @@ public class RequestFriendItem implements Initializable, Network {
 
     StreamObject so;
 
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

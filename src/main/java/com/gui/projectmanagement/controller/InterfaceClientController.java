@@ -1,16 +1,12 @@
 package com.gui.projectmanagement.controller;
 
-import com.gui.projectmanagement.authentication.CreateProjectManager;
 import com.gui.projectmanagement.cache.Interactors;
 import com.gui.projectmanagement.cache.Messages;
 import com.gui.projectmanagement.entity.*;
 import com.gui.projectmanagement.functions.FileFunction;
 import com.gui.projectmanagement.functions.Time;
 import com.gui.projectmanagement.functions.Weather;
-import com.gui.projectmanagement.network.DataService;
-import com.gui.projectmanagement.network.StreamFunction;
-import com.gui.projectmanagement.network.StreamObject;
-import com.gui.projectmanagement.network.Processing;
+import com.gui.projectmanagement.network.*;
 import com.gui.projectmanagement.ui.InterfaceClientUI;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -22,13 +18,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -43,7 +38,6 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -452,14 +446,33 @@ public class InterfaceClientController implements Initializable, Network, Data, 
     @FXML
     private Rectangle icon_img ;
 
+    // Delete Project
+
+    @FXML
+    private AnchorPane a_confirm_delete_project ;
+
+    @FXML
+    private AnchorPane a_delete_first ;
+
+    @FXML
+    private Label notification_confirm ;
+
+    @FXML
+    private AnchorPane a_delete_last ;
+
+    @FXML
+    private Label notification_send_code ;
+
+    @FXML
+    private TextField input_code ;
 
     public StreamObject so ;
 
     public ClientData client_data ;
 
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
 
-    InterfaceClientUI icu = new InterfaceClientUI() ;
+    InterfaceClientUI icu = new InterfaceClientUI(this) ;
 
     List<ProjectPreview> projects = null ;
 
@@ -474,8 +487,6 @@ public class InterfaceClientController implements Initializable, Network, Data, 
     //
 
     ContactObject interactor = null ;
-
-    DataService ds = new DataService() ;
 
     Processing pss = null ;
 
@@ -533,6 +544,11 @@ public class InterfaceClientController implements Initializable, Network, Data, 
 
     Image icon_folder = new Image(getClass().getResourceAsStream(imaPart2));
 
+    DataService ds = new DataService() ;
+
+    ProjectStream ps = new ProjectStream() ;
+
+    String project_delete = "";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -651,46 +667,34 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         basic_information.setOnAction(event -> {
-            basic_information.setStyle("-fx-background-color:  #dcdcdc;" +
-                                        "-fx-background-radius: 3px;" +
-                                        "-fx-padding:  0 0 0 20px;");
-            contact_information.setStyle(null);
-            login_information.setStyle(null);
+            basic_information.setStyle("-fx-background-color:  #dcdcdc;");
+            contact_information.setStyle("-fx-background-color: transparent;");
+            login_information.setStyle("-fx-background-color: transparent;");
             a_contact_information.setVisible(false);
             a_login_information.setVisible(false);
             a_basic_information.setVisible(true);
         });
 
         contact_information.setOnAction(event -> {
-            contact_information.setStyle("-fx-background-color:  #dcdcdc;" +
-                    "-fx-background-radius: 3px;" +
-                    "-fx-padding:  0 0 0 20px;");
-            basic_information.setStyle(null);
-            login_information.setStyle(null);
+            contact_information.setStyle("-fx-background-color:  #dcdcdc;");
+            basic_information.setStyle("-fx-background-color: transparent;");
+            login_information.setStyle("-fx-background-color: transparent;");
             a_basic_information.setVisible(false);
             a_login_information.setVisible(false);
             a_contact_information.setVisible(true);
         });
 
         login_information.setOnAction(event -> {
-            login_information.setStyle("-fx-background-color:  #dcdcdc;" +
-                    "-fx-background-radius: 3px;" +
-                    "-fx-padding:  0 0 0 20px;");
-            basic_information.setStyle(null);
-            contact_information.setStyle(null);
+            login_information.setStyle("-fx-background-color:  #dcdcdc;");
+            basic_information.setStyle("-fx-background-color: transparent;");
+            contact_information.setStyle("-fx-background-color: transparent;");
             a_basic_information.setVisible(false);
             a_contact_information.setVisible(false);
             a_login_information.setVisible(true);
         });
 
-        hbox_total.setStyle("-fx-background-color: #dcdcdc ; " +
-                "-fx-background-radius: 3px ;" +
-                "-fx-border-color: transparent ;");
-
         btn_total.setOnAction(event -> {
-            hbox_total.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_total.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHbox(hbox_cancelled);
             setStyleHbox(hbox_complete);
@@ -702,9 +706,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         btn_in_progress.setOnAction(event -> {
-            hbox_in_progress.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_in_progress.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHbox(hbox_cancelled);
             setStyleHbox(hbox_complete);
@@ -717,9 +719,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         btn_cancelled.setOnAction(event -> {
-            hbox_cancelled.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_cancelled.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHbox(hbox_total);
             setStyleHbox(hbox_complete);
@@ -732,9 +732,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         btn_complete.setOnAction(event -> {
-            hbox_complete.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_complete.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHbox(hbox_cancelled);
             setStyleHbox(hbox_total);
@@ -747,9 +745,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         btn_on_hold.setOnAction(event -> {
-            hbox_on_hold.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_on_hold.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHbox(hbox_cancelled);
             setStyleHboxTop(hbox_complete);
@@ -762,9 +758,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         btn_delay.setOnAction(event -> {
-            hbox_delay.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_delay.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHbox(hbox_cancelled);
             setStyleHbox(hbox_complete);
@@ -777,9 +771,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         });
 
         btn_pause.setOnAction(event -> {
-            hbox_pause.setStyle("-fx-background-color: #dcdcdc ; " +
-                    "-fx-background-radius: 3px ;" +
-                    "-fx-border-color: transparent ;");
+            hbox_pause.setStyle("-fx-background-color: #dcdcdc ; ");
 
             setStyleHboxTop(hbox_cancelled);
             setStyleHbox(hbox_complete);
@@ -791,6 +783,39 @@ public class InterfaceClientController implements Initializable, Network, Data, 
             icu.displayListProject(list_project, projects_tmp);
         });
 
+        /*
+
+        hbox_total.setOnMouseEntered(e -> {
+            hbox_total.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+        hbox_in_progress.setOnMouseEntered(e -> {
+            hbox_in_progress.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+        hbox_cancelled.setOnMouseEntered(e -> {
+            hbox_cancelled.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+        hbox_complete.setOnMouseEntered(e -> {
+            hbox_complete.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+        hbox_on_hold.setOnMouseEntered(e -> {
+            hbox_on_hold.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+        hbox_delay.setOnMouseEntered(e -> {
+            hbox_delay.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+        hbox_pause.setOnMouseEntered(e -> {
+            hbox_pause.setStyle("-fx-background-color: #f8f8ff ; ");
+        }) ;
+
+         */
+
+
         email_search.setOnAction(event -> {
             String client_email = email_search.getText() ;
             if (client_email != "") {
@@ -801,7 +826,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         list_project.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 ProjectPreview pp = list_project.getSelectionModel().getSelectedItem();
-                sf.sendRqProjectControl(so, pp.getId());
+                ps.sendRqProjectControl(so, pp.getId());
             }
         });
 
@@ -878,7 +903,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
             }
         });
 
-        btn_user.setOnMouseClicked(event -> {
+        avata_user.setOnMouseClicked(event -> {
             ContextMenu contextMenu = new ContextMenu();
             MenuItem menuItem = new MenuItem("Contacts");
             menuItem.setOnAction(e -> {
@@ -888,14 +913,11 @@ public class InterfaceClientController implements Initializable, Network, Data, 
                 if (contacts == null) {
                     // Send rq
                     sf.sendRqContacts(so, client_data.getId());
-                } else {
-                    // displayContacts(contacts);
-                    System.out.println("aaaa");
                 }
             });
             contextMenu.getItems().add(menuItem);
 
-            contextMenu.show(btn_user, event.getScreenX(), event.getScreenY());
+            contextMenu.show(avata_user, event.getScreenX(), event.getScreenY());
         });
 
         btn_close_acontact.setOnAction(event -> {
@@ -1484,7 +1506,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
                     new_window.setY(mouseEvent.getScreenY() - yOffset);
                 });
 
-                Scene scene = new Scene(root, 1000, 600) ;
+                Scene scene = new Scene(root, 1000, 580) ;
                 scene.setFill(Color.TRANSPARENT);
                 new_window.setScene(scene);
 
@@ -1507,7 +1529,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
             }
 
             if (feedbacks == null) {
-                sf.sendRequestFeedBacks(so, client_data.getId()) ;
+                ps.sendRequestFeedBacks(so, client_data.getId()) ;
             }
 
             a_notification.setVisible(true) ;
@@ -1540,7 +1562,7 @@ public class InterfaceClientController implements Initializable, Network, Data, 
     @FXML
     public void resetNotification(ActionEvent event) {
         sf.sendRqRquestAddContact(so, client_data.getId()) ;
-        sf.sendRequestFeedBacks(so, client_data.getId()) ;
+        ps.sendRequestFeedBacks(so, client_data.getId()) ;
     }
 
     public void updateRequest(RequestAddContact request) {
@@ -1695,6 +1717,10 @@ public class InterfaceClientController implements Initializable, Network, Data, 
         anchorpane_main.setDisable(false);
     }
 
+    public void detaiProject(ProjectPreview pp) {
+        ps.sendRqProjectControl(so, pp.getId());
+    }
+
     @FXML
     public void addFriend(ActionEvent event) {
         if (client_search != null) {
@@ -1709,6 +1735,53 @@ public class InterfaceClientController implements Initializable, Network, Data, 
             interactor = client_search ;
             updateMessage(interactor);
         }
+    }
+
+    public void deleteProject(ProjectPreview pp) {
+        anchorpane_main.setDisable(true);
+        a_confirm_delete_project.setVisible(true);
+        notification_confirm.setText("Delete " + pp.getName() + "?");
+        this.project_delete = pp.getId() ;
+    }
+
+    @FXML
+    public void confirmDeletion(ActionEvent event) {
+        a_delete_first.setVisible(false);
+        a_delete_last.setVisible(true);
+
+        ps.deleteProjectFirst(so) ;
+    }
+
+    @FXML
+    public void finishDelete(ActionEvent event) {
+        String code = input_code.getText() ;
+        if (code != "") {
+            ps.deleteProjectLast(so, code, project_delete);
+        }
+    }
+
+    @FXML
+    public void closeDelete(ActionEvent event) {
+        this.input_code.setText("");
+        this.a_delete_last.setVisible(false);
+        this.a_delete_first.setVisible(true);
+        a_confirm_delete_project.setVisible(false);
+        anchorpane_main.setDisable(false);
+    }
+
+    public void deleteProjectSuccess(String project_id) {
+        this.input_code.setText("");
+        this.a_delete_last.setVisible(false);
+        this.a_delete_first.setVisible(true);
+        this.a_confirm_delete_project.setVisible(false);
+        this.anchorpane_main.setDisable(false);
+        for (ProjectPreview pp : projects) {
+            if (pp.getId().equals(project_id)) {
+                projects.remove(pp) ;
+                break ;
+            }
+        }
+        icu.displayListProject(list_project, projects);
     }
 
     public void updateMessage(ContactObject interactor) {
@@ -1744,13 +1817,11 @@ public class InterfaceClientController implements Initializable, Network, Data, 
     }
 
     public void setStyleHbox(HBox hbox) {
-        hbox.setStyle("-fx-background-color: transparent ;" +
-                "-fx-border-color:  transparent transparent gray transparent ;");
+        hbox.setStyle("-fx-background-color: transparent ;") ;
     }
 
     public void setStyleHboxTop(HBox hbox) {
-        hbox.setStyle("-fx-border-color: transparent ;" +
-                "-fx-background-color: transparent ;");
+        hbox.setStyle("-fx-background-color: transparent ;");
     }
 
     public int countProject(List<ProjectPreview> projects, String status) {

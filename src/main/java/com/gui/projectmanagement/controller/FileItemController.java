@@ -4,7 +4,7 @@ import com.gui.projectmanagement.entity.ClientData;
 import com.gui.projectmanagement.entity.ContactObject;
 import com.gui.projectmanagement.entity.FileObject;
 import com.gui.projectmanagement.entity.Message;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.ClientStream;
 import com.gui.projectmanagement.network.StreamObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,7 +50,7 @@ public class FileItemController implements Initializable {
 
     StreamObject so ;
 
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

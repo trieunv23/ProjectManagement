@@ -107,8 +107,8 @@
 }
 
 .text_field_search {
-    -fx-background-color: #d3d3d3 ;
-    -fx-background-radius: 3px ;
+    -fx-background-color: #dcdcdc ;
+    -fx-background-radius: 5px ;
 }
 
 .button_left {
@@ -117,8 +117,8 @@
 }
 
 .button_create {
-    -fx-background-color: #6495ed ;
-    -fx-background-radius: 3px ;
+    -fx-background-color: transparent ;
+    -fx-background-radius: 7px ;
     -fx-text-fill: white ;
 }
 
@@ -134,7 +134,8 @@
 
 .button_left_center {
     -fx-background-color: transparent;
-    -fx-background-radius: 3px ;
+    -fx-background-radius: 5px ;
+    -fx-padding:  0 0 0 20px ;
     -fx-background-insets: 0px;
     -fx-graphic-text-gap: 20;
     -fx-alignment: center_left ;
@@ -142,7 +143,7 @@
 
 .button_left_center:hover {
     -fx-background-color: #dcdcdc;
-    -fx-background-radius: 3px ;
+    -fx-background-radius: 5px ;
     -fx-background-insets: 0px;
     -fx-cursor: hand ;
 }
@@ -467,6 +468,17 @@
 .list_contact .list-cell:selected {
     -fx-background-color: white ;
     -fx-background-radius: 3px ;
+}
+
+.hbox_project_status {
+    -fx-background-color: transparent ;
+    -fx-background-radius: 5px;
+}
+
+.hbox_project_status:hover {
+    -fx-background-color: black ;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand ;
 }
 
 

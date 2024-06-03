@@ -4,10 +4,7 @@ import com.gui.projectmanagement.entity.*;
 import com.gui.projectmanagement.functions.AlertLib;
 import com.gui.projectmanagement.functions.Notification;
 import com.gui.projectmanagement.functions.Time;
-import com.gui.projectmanagement.network.Client;
-import com.gui.projectmanagement.network.StreamFunction;
-import com.gui.projectmanagement.network.StreamObject;
-import com.gui.projectmanagement.network.Processing;
+import com.gui.projectmanagement.network.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -144,6 +141,41 @@ public class LoginController implements Initializable {
     @FXML
     private Rectangle background ;
 
+    // Login
+
+    @FXML
+    private AnchorPane a_forgot_password ;
+
+    @FXML
+    private AnchorPane a_forgot_1 ;
+
+    @FXML
+    private TextField username_search ;
+
+    @FXML
+    private Button find ;
+
+    @FXML
+    private AnchorPane a_forgot_2 ;
+
+    @FXML
+    private Label message ;
+
+    @FXML
+    private TextField code ;
+
+    @FXML
+    private Button confirm ;
+
+    @FXML
+    private Button finish ;
+
+    @FXML
+    private AnchorPane a_forgot_3 ;
+
+    @FXML
+    private TextField new_password ;
+
     private boolean is_show_password_login = false ;
     private boolean is_show_password_regester1 = false ;
     private boolean is_show_password_regester2 = false ;
@@ -169,7 +201,11 @@ public class LoginController implements Initializable {
 
     private StreamObject so ;
 
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
+
+    ProjectStream ps = new ProjectStream() ;
+
+    GuestStream gs = new GuestStream() ;
 
     String imaPart = "/com/gui/projectmanagement/images/Background.png" ;
     Image background_img = new Image(getClass().getResourceAsStream(imaPart));
@@ -180,6 +216,8 @@ public class LoginController implements Initializable {
 
     AlertLib alert = new AlertLib() ;
 
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -431,7 +469,7 @@ public class LoginController implements Initializable {
         find.setOnAction(event -> {
             String username_rs = username_search.getText() ;
             if (!username_rs.equals("")) {
-                boolean result = sf.forgotPassword_frist(so, username_rs) ;
+                boolean result = gs.forgotPassword_frist(so, username_rs) ;
                 if (result) {
                     a_forgot_1.setVisible(false);
                     a_forgot_2.setVisible(true);
@@ -445,7 +483,7 @@ public class LoginController implements Initializable {
         confirm.setOnAction(event -> {
             String code = this.code.getText();
             if (code != null) {
-                boolean result = sf.forgotPassword_mid(so, code) ;
+                boolean result = gs.forgotPassword_mid(so, code) ;
                 if (result) {
                     a_forgot_2.setVisible(false);
                     a_forgot_3.setVisible(true);
@@ -462,7 +500,7 @@ public class LoginController implements Initializable {
                 if (new_pw.length() < 8) {
                     error("Password must be at least 8 characters long!");
                 } else {
-                    boolean result = sf.forgotPassword_last(so, getMd5(new_pw)) ;
+                    boolean result = gs.forgotPassword_last(so, getMd5(new_pw)) ;
                     if (result) {
                         alert("Change successful!") ;
                         this.a_forgot_3.setVisible(false);
@@ -475,44 +513,7 @@ public class LoginController implements Initializable {
                 }
             }
         });
-
-
     }
-
-    // Login
-
-    @FXML
-    private AnchorPane a_forgot_password ;
-
-    @FXML
-    private AnchorPane a_forgot_1 ;
-
-    @FXML
-    private TextField username_search ;
-
-    @FXML
-    private Button find ;
-
-    @FXML
-    private AnchorPane a_forgot_2 ;
-
-    @FXML
-    private Label message ;
-
-    @FXML
-    private TextField code ;
-
-    @FXML
-    private Button confirm ;
-
-    @FXML
-    private Button finish ;
-
-    @FXML
-    private AnchorPane a_forgot_3 ;
-
-    @FXML
-    private TextField new_password ;
 
     @FXML
     private void forgotPassword (ActionEvent event) {
@@ -520,9 +521,6 @@ public class LoginController implements Initializable {
         this.a_forgot_password.setVisible(true);
         this.a_forgot_1.setVisible(true);
     }
-
-    private static double xOffset = 0;
-    private static double yOffset = 0;
 
     @FXML
     private void login(ActionEvent event) {
@@ -532,7 +530,7 @@ public class LoginController implements Initializable {
             // throw new RuntimeException("Userame or Password is empty.") ;
         }
         LoginObject login_object = new LoginObject(username, getMd5(password_login_value)) ;
-        ClientData client_data = sf.login(so, login_object);
+        ClientData client_data = gs.login(so, login_object);
         if (client_data != null) {
             windowSwitch(client_data, so);
             System.out.println("Logged in successfully!") ;
@@ -691,7 +689,7 @@ public class LoginController implements Initializable {
             Notification.showAlert(Alert.AlertType.ERROR, "Invalid registration information", "Please enter valid information!");
         } else {
             RegesterObject ro = new RegesterObject(firstname_value, lastname_value, Time.timeConversion(day_of_birth_value), gender_value, email_value, phonenumber_value, username_regester_value, password_regester_value) ;
-            sf.regester_first(so, ro);
+            gs.regester_first(so, ro);
             Platform.runLater(() -> {
                 try {
                     URL url = getClass().getResource("/com/gui/projectmanagement/view/ConfirmCode.fxml");
@@ -758,7 +756,7 @@ public class LoginController implements Initializable {
     }
 
     public void windowSwitch(ClientData client_data, StreamObject so) {
-        List<ProjectPreview> projects = sf.getProjects(so, client_data.getId()) ;
+        List<ProjectPreview> projects = ps.getProjects(so, client_data.getId()) ;
         List<ContactObject> contacts = sf.getContacts(so, client_data.getId()) ;
         List<ContactObject> interactors = sf.getInteractor(so, client_data.getId());
         List<RequestAddContact> requests = sf.getRequest(so, client_data.getId()) ;

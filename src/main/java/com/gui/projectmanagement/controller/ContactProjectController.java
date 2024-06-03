@@ -2,7 +2,7 @@ package com.gui.projectmanagement.controller;
 
 import com.gui.projectmanagement.entity.ContactObject;
 import com.gui.projectmanagement.network.Processing;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.ClientStream;
 import com.gui.projectmanagement.network.StreamObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,7 +33,7 @@ public class ContactProjectController implements Initializable, Data, Network {
 
     ContactObject contact = null ;
 
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
 
     String project_id ;
 

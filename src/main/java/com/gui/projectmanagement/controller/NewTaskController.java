@@ -3,7 +3,8 @@ package com.gui.projectmanagement.controller;
 import com.gui.projectmanagement.authentication.NewTaskManager;
 import com.gui.projectmanagement.entity.*;
 import com.gui.projectmanagement.functions.Time;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.ProjectStream;
+import com.gui.projectmanagement.network.ClientStream;
 import com.gui.projectmanagement.network.StreamObject;
 import com.gui.projectmanagement.network.Processing;
 import com.gui.projectmanagement.ui.ProjectViewUI;
@@ -26,7 +27,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
 public class NewTaskController implements Initializable , Access, Data, Network{
 
@@ -56,7 +56,9 @@ public class NewTaskController implements Initializable , Access, Data, Network{
 
     StreamObject so ;
 
-    StreamFunction sf = new StreamFunction();
+    ClientStream sf = new ClientStream();
+
+    ProjectStream ps = new ProjectStream() ;
 
     ProjectViewUI pvu = new ProjectViewUI() ;
 
@@ -77,7 +79,7 @@ public class NewTaskController implements Initializable , Access, Data, Network{
         ClientObject undertaker = this.members.getValue() ;
         if (ntm.validatorInfor("123", name_task, request, undertaker, deadline)) {
             CreateTaskProject ctp = new CreateTaskProject("Element",this.ntc.getParent().getValue().getProject_id(), this.ntc.getParent().getValue().getTask_id(), name_task, request, undertaker.getId(), Time.timeConversion(deadline), client_data.getId(), null) ;
-            sf.sendRqTask(so, ctp) ;
+            ps.sendRqTask(so, ctp) ;
             closeWindow(event);
         } else {
             error("Please enter valid information!");

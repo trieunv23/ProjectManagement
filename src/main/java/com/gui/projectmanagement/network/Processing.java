@@ -1,18 +1,11 @@
 package com.gui.projectmanagement.network;
 
-import com.gui.projectmanagement.cache.Interactors;
-import com.gui.projectmanagement.cache.Messages;
 import com.gui.projectmanagement.controller.InterfaceClientController;
 import com.gui.projectmanagement.controller.ProjectViewController;
 import com.gui.projectmanagement.entity.*;
-import com.gui.projectmanagement.network.DataService;
-import com.gui.projectmanagement.network.StreamFunction;
-import com.gui.projectmanagement.network.StreamObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Processing {
 
@@ -27,7 +20,9 @@ public class Processing {
 
     // Service
     DataService ds = new DataService() ;
-    StreamFunction sf = new StreamFunction() ;
+    ClientStream sf = new ClientStream() ;
+
+    ProjectStream ps = new ProjectStream() ;
 
     // Interact
     ContactObject interactor = null ;
@@ -61,21 +56,21 @@ public class Processing {
                         break ;
                     case "@project_control":
                         String project_id = ds.receive(so.getDis(), TypeData.STRING) ;
-                        ProjectControl pc = sf.receiveProjectControl(so) ;
+                        ProjectControl pc = ps.receiveProjectControl(so) ;
                         icc.openProjectView(pc.getMembers(), pc.getTasks(), project_id);
                         break ;
                     case "@task":
-                        TaskObject task = sf.receiveTask(so) ;
-                        ProductPreview pp = sf.receiveProduct(so) ;
+                        TaskObject task = ps.receiveTask(so) ;
+                        ProductPreview pp = ps.receiveProduct(so) ;
                         pvc.changeTask(task, pp);
                         break ;
                     case "@reset_task":
-                        TaskObject new_task = sf.receiveTask(so) ;
-                        ProductPreview new_pp = sf.receiveProduct(so) ;
+                        TaskObject new_task = ps.receiveTask(so) ;
+                        ProductPreview new_pp = ps.receiveProduct(so) ;
                         pvc.updateTask(new_task, new_pp);
                         break ;
                     case "@task_just_create":
-                        TaskObject task_object = sf.receiveTaskJustCreate(so) ;
+                        TaskObject task_object = ps.receiveTaskJustCreate(so) ;
                         pvc.buildTreeItem(task_object);
                         break ;
                     case "@product_just_create":
@@ -83,11 +78,11 @@ public class Processing {
                         // ?
                         break ;
                     case "@product" :
-                        ProductObject po_1 = sf.receveProductJustCreate(so) ;
+                        ProductObject po_1 = ps.receveProductJustCreate(so) ;
                         break ;
                         // ?
                     case "@project_just_create":
-                        ProjectObject project_object = sf.receiveProjectJustCreate(so) ;
+                        ProjectObject project_object = ps.receiveProjectJustCreate(so) ;
                         icc.updateListProject(project_object);
                         break ;
                     case "@messages":
@@ -160,8 +155,21 @@ public class Processing {
                         icc.downloadFile(fo);
                         break ;
                     case "@product_object":
-                        FileObject fo2 = sf.getProductObject(so) ;
+                        FileObject fo2 = ps.getProductObject(so) ;
                         pvc.dowloadProduct(fo2);
+                        break ;
+                    case "@result_delete_project" :
+                        String reuslt = ps.receiveResultDeleteProject(so) ;
+                        if (reuslt.equals("#code_incorrect")) {
+                            icc.error("Incorrect code!");
+                        } else if (reuslt.equals("#role_invalid")) {
+                            icc.error("You do not have permission to delete this project!");
+                        } else if (reuslt.equals("#delete_unsuccess")) {
+                            icc.error("Delete Unsuccess!");
+                        } else {
+                            icc.alert("Delete Successful.");
+                            icc.deleteProjectSuccess(reuslt);
+                        }
                         break ;
                     case "@disconnect":
                         boolean result = sf.disconnectLast(so);

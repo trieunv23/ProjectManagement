@@ -3,7 +3,7 @@ package com.gui.projectmanagement.controller;
 import com.gui.projectmanagement.authentication.NewProjectManager;
 import com.gui.projectmanagement.entity.*;
 import com.gui.projectmanagement.functions.Time;
-import com.gui.projectmanagement.network.StreamFunction;
+import com.gui.projectmanagement.network.ProjectStream;
 import com.gui.projectmanagement.network.StreamObject;
 import com.gui.projectmanagement.network.Processing;
 import javafx.event.ActionEvent;
@@ -50,7 +50,7 @@ public class NewProjectControler implements Initializable, Network, Access, Wind
 
     StreamObject so = null ;
 
-    StreamFunction sf = new StreamFunction() ;
+    ProjectStream ps = new ProjectStream() ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,7 +67,7 @@ public class NewProjectControler implements Initializable, Network, Access, Wind
 
         if (npm.createProjectValidator(project_name, describe, end_date, budget)) {
             CreateProjectObject cpo = new CreateProjectObject(project_name, describe, Time.timeConversion(end_date), budget, client_data.getId()) ;
-            sf.createProject(so, cpo);
+            ps.createProject(so, cpo);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
             window.close();
         } else {

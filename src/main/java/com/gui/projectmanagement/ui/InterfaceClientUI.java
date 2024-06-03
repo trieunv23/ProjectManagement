@@ -33,6 +33,12 @@ public class InterfaceClientUI {
 
     Image icon_new_project = new Image(getClass().getResourceAsStream(imaPart2));
 
+    InterfaceClientController icc = null ;
+
+    public InterfaceClientUI (InterfaceClientController icc) {
+        this.icc = icc ;
+    }
+
     public void displayListProject(ListView list_view, List<ProjectPreview> list_project) {
         Platform.runLater(() -> {
             ObservableList<ProjectPreview> project_obs = FXCollections.observableArrayList(list_project);
@@ -51,6 +57,7 @@ public class InterfaceClientUI {
                             AnchorPane anchorpane = loader.load();
                             anchorpane.getStyleClass().add("anchorpane_project");
                             ProjectItemController pc = loader.getController() ;
+                            pc.loadInterfaceClientController(icc);
                             pc.setProject(project_preview);
                             setGraphic(anchorpane);
                         } catch (IOException e) {
