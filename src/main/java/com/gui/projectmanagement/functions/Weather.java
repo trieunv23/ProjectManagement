@@ -66,7 +66,11 @@ public class Weather {
             String temperature = doc.getElementsByTagName("temperature").item(0).getAttributes().getNamedItem("value").getNodeValue();
             String weather = doc.getElementsByTagName("weather").item(0).getAttributes().getNamedItem("value").getNodeValue();
 
-            wo.setCity(city);
+            if (city.equals("Turan")) {
+                wo.setCity("Da Nang");
+            } else {
+                wo.setCity(city);
+            }
             wo.setTemperature(Double.parseDouble(temperature) - 273.15);
             wo.setWeather(weather);
         } catch (Exception e) {
